@@ -18,6 +18,7 @@
     <string name="main_status_listening_for_incoming_connection">Listening for incoming connection</string>
 
     <string name="main_button_label">Send</string>
+    <string name="sound_button_label">Ring</string>
     <string name="main_input_hint">Message</string>
 
     <string name="format_dev_name">%1$s %2$s</string>

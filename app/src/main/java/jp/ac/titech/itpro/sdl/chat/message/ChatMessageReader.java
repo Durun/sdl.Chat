@@ -40,6 +40,7 @@ public class ChatMessageReader implements Closeable {
         Log.d(TAG, "read");
         int seq = -1;
         long time = -1;
+        boolean sound = false;
         String content = null;
         String sender = null;
         reader.beginObject();
@@ -67,12 +68,15 @@ public class ChatMessageReader implements Closeable {
                     sender = reader.nextString();
                 }
                 break;
+            case ChatMessage.FIELD_SOUND:
+                sound = (reader.nextInt() == 1);
+                break;
             default:
                 reader.skipValue();
                 break;
             }
         }
         reader.endObject();
-        return new ChatMessage(seq, time, content, sender);
+        return new ChatMessage(seq, time, content, sender, sound);
     }
 }

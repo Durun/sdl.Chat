@@ -177,6 +177,13 @@ class MainActivity : AppCompatActivity() {
         main_input.editableText.clear()
     }
 
+    fun onClickSoundButton(v: View) {
+        Log.d(TAG, "onClickSoundButton")
+        val time = System.currentTimeMillis()
+        val message = ChatMessage(messageSeq, time, null, adapter.name, true)
+        agent!!.send(message)
+    }
+
     fun setState(state: State) {
         setState(state, null)
     }
@@ -201,10 +208,14 @@ class MainActivity : AppCompatActivity() {
         main_progress.isIndeterminate = isConnecting
     }
 
-    fun showMessage(message: ChatMessage?) {
-        chatLogAdapter.add(message)
-        chatLogAdapter.notifyDataSetChanged()
-        main_logview.smoothScrollToPosition(chatLogAdapter.count)
+    fun showMessage(message: ChatMessage) {
+        if (message.sound) {
+            soundPlayer.playConnected()
+        } else {
+            chatLogAdapter.add(message)
+            chatLogAdapter.notifyDataSetChanged()
+            main_logview.smoothScrollToPosition(chatLogAdapter.count)
+        }
     }
 
     private fun disconnect() {
