@@ -210,7 +210,7 @@ class MainActivity : AppCompatActivity() {
 
     fun showMessage(message: ChatMessage) {
         if (message.sound) {
-            soundPlayer.playConnected()
+            soundPlayer.playRing()
         } else {
             chatLogAdapter.add(message)
             chatLogAdapter.notifyDataSetChanged()
